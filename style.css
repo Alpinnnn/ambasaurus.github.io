@@ -25,7 +25,7 @@ body {
     height: 30px;
     width: 1200px;
     position: absolute;
-    bottom: 0px;
+    bottom: 32px;
 }
 
 #box #roadContainer img {
@@ -39,7 +39,7 @@ body {
 #dino {
     width: 50px;
     height: 50px;
-    position: relative;
+    position: absolute;
     top: 103px;
     left: 90px;
     z-index: 2;
@@ -120,4 +120,31 @@ body {
 
 .buton {
     display: flex;
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.score-container .score,
+.score-container .highscore,
+.score-container .lives {
+    margin-right: 10px;
+}
+
+.score {
+    color: white;
+}
+
+.highscore {
+    color: yellow;
+}
+
+.lives {
+    color: red;
 }
