@@ -13,7 +13,4 @@ Features:
 Ambasaurus 1.1 (27/03/2024)
 Update:
   - Fixed Corrupted Images
-
-Ambasaurus 1.2 (27/03/2024)
-Update:
   - Add function onclick
