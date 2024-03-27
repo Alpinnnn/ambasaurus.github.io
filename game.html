@@ -43,9 +43,9 @@ function jump(){
 
 const ifHitCactus = setInterval(function(){
   const charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"))
-  const cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("right"))
+  const cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"))
 
-  if (cactusLeft < 90 && cactusLeft > 0 && charTop >= 60){
+  if (cactusLeft < 50 && cactusLeft > 0 && charTop >= 60){
     cactus.style.animation = "none"
     cactus.style.display = "none"
     if(confirm("Ambasaurus kamu nabrak kaktus, ingin ulang?")){
