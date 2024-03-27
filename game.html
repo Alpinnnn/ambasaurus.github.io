@@ -16,16 +16,20 @@
     Mohon putar ponsel Anda secara horizontal untuk mengakses halaman ini.
   </div>
   <div id="container" style="display: none;">
-    <div id="box">
+    <div class="score-container">
       <div class="score" id="score">Score: 0</div>
       <div class="highscore" id="highscore">Highscore: 0</div>
-      <img src="kaktus.png" alt="kaktus" id="cactus" />
-      <img src="dino.png" alt="dino" id="dino" />
-      <div class="roadContainer" id="roadContainer">
+      <div class="lives" id="lives">Lives: 4</div>
+    </div>
+    <div id="box">
+      <div id="roadContainer">
         <img src="road.png" alt="road" id="road" />
       </div>
+      <img src="kaktus.png" alt="kaktus" id="cactus" />
+      <img src="dino.png" alt="dino" id="dino" />
     </div>
   </div>
+
   <div class="buton">
     <button class="btn-style" id="music-toggle"><i class="fa-solid fa-music"></i></button>
     <button class="btn-style" id="play-again" style="display: none;"><i class="fa-solid fa-rotate-right"></i></button>
@@ -150,6 +154,10 @@
       }
     };
 
+    // Tambahkan variabel global untuk menyimpan jumlah nyawa
+    let lives = 4;
+    const livesDisplay = document.getElementById('lives');
+
     const ifHitCactus = setInterval(function () {
       if (!gamePaused) {
         const charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
@@ -158,15 +166,35 @@
         if (cactusLeft < 185 && cactusLeft > 0 && charTop >= 100) {
           cactus.style.animation = "none";
           cactus.style.display = "none";
-          clearInterval(interval);
-          document.getElementById('container').innerHTML += `<div id="game-over-message">Ambasaurus kamu nabrak kaktus.<br>Final Score: ${score}</div>`;
-          document.getElementById('dino').style.display = 'none';
-          playAgainBtn.style.display = 'block';
-          mainMenuBtn.style.display = 'block';
-          pauseBtn.style.display = 'none';
+
+          // Kurangi jumlah nyawa
+          lives--;
+          livesDisplay.textContent = `Lives: ${lives}`;
+
+          // Reset cactus position and animation
+          setTimeout(() => {
+            cactus.style.left = "850px";
+            cactus.style.animation = "cactus 1s infinite linear";
+            cactus.style.display = "block";
+          }, 100);
+
+          // Kurangi skor sebesar 10% saat nyawa digunakan
+          score -= Math.ceil(score * 0.1);
+          playerScore.textContent = `Score : ${score}`;
+
+          // Jika nyawa habis, tampilkan pesan game over
+          if (lives <= 0) {
+            clearInterval(interval);
+            document.getElementById('container').innerHTML += `<div id="game-over-message">Ambasaurus kamu nabrak kaktus.<br>Final Score: ${score}</div>`;
+            document.getElementById('dino').style.display = 'none';
+            playAgainBtn.style.display = 'block';
+            mainMenuBtn.style.display = 'block';
+            pauseBtn.style.display = 'none';
+          }
         }
       }
-    });
+    }, 10);
+
   </script>
 </body>
 
